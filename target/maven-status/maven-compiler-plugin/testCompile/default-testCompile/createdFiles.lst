@@ -5,3 +5,4 @@ com\inetBanking\utilities\Listeners.class
 com\inetBanking\testCases\TC_001_LoginTest.class
 com\inetBanking\utilities\XLUtils.class
 com\inetBanking\testCases\BaseClass.class
+com\inetBanking\testCases\TC_002_LoginTest_DDT.class

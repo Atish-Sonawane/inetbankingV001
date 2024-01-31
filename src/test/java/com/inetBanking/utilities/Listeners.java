@@ -22,7 +22,7 @@ public class Listeners extends TestListenerAdapter {
 	public void onStart(ITestContext testContext) {
 		String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		String reportname = "Test-Teport"+timestamp+".html";
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/test-output/"+reportname);
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Report/"+reportname);
 
 		htmlReporter.config().setDocumentTitle("InetBanking test project");
 		htmlReporter.config().setReportName("Functional Test Report");

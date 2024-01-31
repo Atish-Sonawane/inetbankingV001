@@ -16,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import com.inetBanking.utilities.ReadConfig;
@@ -23,60 +24,63 @@ import com.inetBanking.utilities.ReadConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
-	
+
 	ReadConfig readconfig = new ReadConfig();
-	public String br = readconfig.getBrowserName();
+	// public String browser = readconfig.getBrowserName();
 	public String baseURL = readconfig.getApplicationURL();
-	public String username=readconfig.getUserName();
-	public String password=readconfig.getPassord();
+	public String username = readconfig.getUserName();
+	public String password = readconfig.getPassord();
 	public static WebDriver driver;
-	
+
 	public static Logger logger;
+
 	@Parameters("browser")
 	@BeforeClass
-	public void setup() {
-		
+	public void setup(@Optional("chrome")String browser) {
+
 		logger = Logger.getLogger("ebanking");
 		PropertyConfigurator.configure("log4j.properties");
-		
-		if (br.equals("chrome")) {
+
+		if (browser.equals("chrome")) {
 			// System.setProperty("webdriver.chrome.driver",
 			// configProp.getProperty("chromepath"));
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
-		} else if (br.equals("edge")) {
+		} else if (browser.equals("edge")) {
 			// System.setProperty("webdriver.chrome.driver",
 			// configProp.getProperty("edgepath"));
 			WebDriverManager.edgedriver().setup();
 			driver = new ChromeDriver();
-		} 
+		}
 		logger.info("*************** Launchimg browser ****************");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(baseURL);
 		driver.manage().window().maximize();
 	}
+
 	@AfterClass
 	public void tearDown() {
 		driver.close();
 	}
-	
+
 	public void captureScreen(WebDriver driver, String screenshotName) throws IOException {
-		TakesScreenshot ts = (TakesScreenshot)driver;
+		TakesScreenshot ts = (TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);
-		// after execuation you could see a folder "FailedTestScrenshots" under SRC folder
-		File target = new File(System.getProperty("user.dir")+"/Screenshot/"+screenshotName+".png");
+		// after execution you could see a folder "FailedTestScrenshots" under SRC
+		// folder
+		File target = new File(System.getProperty("user.dir") + "/Screenshot/" + screenshotName + ".png");
 		FileUtils.copyFile(src, target);
 		System.out.println("Screenshot tacken");
 	}
-	
+
 	public String randomString() {
 		String geneateString = RandomStringUtils.randomAlphabetic(7);
 		return geneateString;
 	}
-	
-public String randomNumber() {
-	String geneateNumber = RandomStringUtils.randomNumeric(10);
-	return geneateNumber;
+
+	public String randomNumber() {
+		String geneateNumber = RandomStringUtils.randomNumeric(10);
+		return geneateNumber;
 	}
 
 }
