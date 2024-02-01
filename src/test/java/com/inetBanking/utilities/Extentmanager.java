@@ -22,7 +22,7 @@ public class Extentmanager extends TestListenerAdapter {
 	public static void onStart() {
 		String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		String reportname = "Test-Teport"+timestamp+".html";
-		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Report/"+reportname);
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Report/myReport.html");
 
 		htmlReporter.config().setDocumentTitle("InetBanking test project");
 		htmlReporter.config().setReportName("Functional Test Report");
