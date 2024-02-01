@@ -15,10 +15,16 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.inetBanking.utilities.Extentmanager;
 import com.inetBanking.utilities.ReadConfig;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -33,6 +39,17 @@ public class BaseClass {
 	public static WebDriver driver;
 
 	public static Logger logger;
+	
+	@BeforeSuite
+	public void Beforesuite() {
+		Extentmanager.onStart();
+	}
+	
+	@AfterSuite
+	public void Aftersuite() {
+		Extentmanager.onFinish();
+	}
+
 
 	@Parameters("browser")
 	@BeforeClass
@@ -62,7 +79,8 @@ public class BaseClass {
 	public void tearDown() {
 		driver.close();
 	}
-
+	
+	
 	public void captureScreen(WebDriver driver, String screenshotName) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File src = ts.getScreenshotAs(OutputType.FILE);

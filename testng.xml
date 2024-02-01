@@ -3,7 +3,7 @@
 <suite name="InetBankingv1">
 
 	<listeners>
-		<listener class-name="com.inetBanking.utilities.Listeners"></listener>
+		<listener class-name="com.inetBanking.utilities.Extentmanager"></listener>
 	</listeners>
 
 	<test thread-count="5" name="BankingApp Test">

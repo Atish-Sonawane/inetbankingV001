@@ -11,6 +11,7 @@ public class TC_001_LoginTest extends BaseClass  {
 	
 	@Test
 	public void loginTest() throws IOException {
+		
 		logger.info("************* URL is open ***************");
 		
 		LoginPage lp = new LoginPage(driver);

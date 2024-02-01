@@ -13,13 +13,13 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class Listeners extends TestListenerAdapter {
+public class Extentmanager extends TestListenerAdapter {
 	
-	public ExtentHtmlReporter htmlReporter;
-	public ExtentReports extent;
-	public ExtentTest test;
+	public static ExtentHtmlReporter htmlReporter;
+	public static ExtentReports extent;
+	public static ExtentTest test;
 
-	public void onStart(ITestContext testContext) {
+	public static void onStart() {
 		String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
 		String reportname = "Test-Teport"+timestamp+".html";
 		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir")+"/Report/"+reportname);
@@ -52,7 +52,7 @@ public class Listeners extends TestListenerAdapter {
 		test= extent.createTest(result.getName());
 		test.log(Status.SKIP, "Test case SKIPPED is"+result.getName());
 	}
-	public void onFinish(ITestResult testContext) {
+	public static void onFinish() {
 		extent.flush();
 	}	
 
