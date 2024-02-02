@@ -47,10 +47,10 @@ public class LoginPage {
 		txtPassword.sendKeys(pwd);
 	}
 	public void clickSubmit() {
-		txtUserName.click();
+		btnLogin.click();
 	}
 	public void clickLogout() {
-		txtUserName.click();
+		lnkLogout.click();
 	}
 
 }

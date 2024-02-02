@@ -14,7 +14,7 @@ public class AddCustomerPage {
 		PageFactory.initElements(idriver, this);
 	}
 	
-	@FindBy (xpath = "//a[@href='addcustomerpage.php']")
+	@FindBy (xpath = "//a[text()='New Customer']")
 	@CacheLookup
 	WebElement linkAddNewCustomer;
 	
@@ -22,7 +22,7 @@ public class AddCustomerPage {
 	@CacheLookup
 	WebElement txtCustomerName;
 	
-	@FindBy (name = "rad1")
+	@FindBy (name = "rad1") 
 	@CacheLookup
 	WebElement rdGender;
 	
@@ -70,7 +70,7 @@ public class AddCustomerPage {
 		txtCustomerName.sendKeys(cname);
 	}
 	
-	public void custGendder(String cgender) {
+	public void custGender(String cgender) {
 		rdGender.click();
 	}
 	
@@ -81,7 +81,7 @@ public class AddCustomerPage {
 	}
 	
 	public void custAddress(String caddress) {
-		txtCustomerName.sendKeys(caddress);
+		txtAddresss.sendKeys(caddress);
 	}
 	
 	public void custCity(String ccity) {
